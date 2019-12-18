@@ -1,0 +1,29 @@
+1. Geral dos dados
+2. Lidar com NaN
+
+
+============== 1. Geral dos Dados =====================================
+
+df.head()
++ lista as primeiras 5 rows. Uma amostragem dos dados
+
+df.info()
++ lista quantidade de colunas, tamanho que consome de memória e tipo de dados
+
+df["column].value_counts()
++ Visualiza valores unicos e a quantidade deles
+
+df.shape
++ Retorna tupla (rows, columns)
+
+============== 2. Lidar com NaN =======================================
+
+df.isna()
++ Retorna DF de boolean para Nan
+
+df.replace('', np.nan)
++ Substitui por Nan
+
+df[col].fillna(col_mean)
++ Prencher Nans de uma coluna por um valor
+
