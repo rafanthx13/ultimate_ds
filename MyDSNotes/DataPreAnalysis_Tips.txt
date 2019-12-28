@@ -1,0 +1,141 @@
+
+
+1. Verificar Tipos de dados
+
+2. Verificar se para um tipo de dados (int/string) todas as rows nessa coluna é mesmo do tipo int/string. (dtypes do pandas)
+	+ int,flot, string/object, datetime
+
+3. Remover dados inválidos:
++ Idenficá-los e substituir por Nan (np.nan) que indica que é um dado faltante. O Scik-Learnig e outros frameworkss tratam melhor Nan do que qualquer outra coisa
+  - Verifica positivo/negatio onde deve ser s[o positivo
+  - Em string, string vazias e nulo
+==> Para dados numéricos, faça um histograma para detectar outliers inválidos e faça a filtragem. A filtragem é do EXEMPLO 2 (Preço de Taxi de NY) Você cria uma DataF e Boolean que atende a uma condiçâo, junta tudo e com isso faz a filtragem das rows
+
+4. Converter o tipo da coluna para o tipo correto "float", "category"
+
+5. Observar se uma coluna tem mitos dados faltantes
++ Se tiver, entâo retire essa coluna
+  - Se deixar uma coluna com muito Nan é ruim para qualquer modelo
+
+6. Decidir critério para retirar coluna
+  - QUantidade mínima de valores válidos
+
+7. Preencher os valores faltante com algum dado?
+  - Se númerico, daria para preencher pela média? 
+  - Se categóricos, poderia substituir por uma nova categoria chamda "missign"
+  - TUdo isso são estratégias, nâo é algo engessado
+
+8. Verificar se as variáveis categoricas tem muitas categorias?
++ `features[cat_vars].apply(lambda x: len(set(x)))`
++ Talvez muitas categorias para uma string nâo representa muita informaçâi. Um exemplo disso é o nome por exemplo
+
+9. Fazer seleção de variáveis baseadas na árvore de decisão
++ ExtraTreeClassifier
+
+10. Otimizar classificador
++ Uma boa prática e alterar parâmetros separadamente, de forma a obter um valor que otimiza o classificador só com aquele parâmetro. E, no final, juntar tudo.
+
+================= Testar Alg de ML  =================
+
++ Em geral, define-se um valor 'cv' que é a quantidade de divisão da base para testá-la. Em artigos cientificos costuma-se usar 10, mas, quanto maior o número, mais demora. Para casos simples, use 3.
++ `cv = 3`
+
++ Função de erro:  
+  - Servem para qualificar uma ML, quanto menor, melhor
+  - RMSE : root-mean-square error
+    * `scoring = 'neg_mean_squared_error'`
+  - RMSD : root-mean-square deviation
+
++ Quantidade de núcleos:
+````python
+import multiprocessing
+n_jobs = multiprocessing.cpu_count() - 1
+````
+
++ Pode usar por exemplo a métrica RMSE para saber qual é melhor sem treinar muito.
+
+================= FEATURES ENGENEERING ==============================
+
+Com base nos dados que nós temos, vamos criar outras colunas.
+
+Exemplo
+````
+Prevendo Preço de Taxi em NY
+
+Algo que influencia a duração da viagem é a condição do tráfego. Podemos deduzir usando `pickup_datetime`.
+
+* *hora do dia*: tráfego será menor durante a noite
+* *dia da semana*: tráfego será menor nos finais de semana
+* *dia do ano*: referiados e férias, por exemplo
+* *ano*: pode ser influenciado por mudanças nas regras de transporte ou inflação
+````
+
+==> Ao fazer a engenharia de features, se você, por exmeplo, pegar uma data completa "%h %m %s / %d %M %y" e deixar separado, entâo, a coluna com o dado original "%h %m %s / %d %M %y" deve ser excluida **para evitar repetição de features e duplicaçâo, oq ue atrapalha na ML**
+
+=================== NORMALIZAÇÃO =============================
+
+Quando as colunas Numéricos tem escala valores muito diferentes entre si, é recomendável normzliar. Colocar tudo entre [0,1]. Assim o treinamento de ML será mais rápido.
+
+Exemplo
+````python
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+scaler.fit(X_train)
+X_train_scaled = scaler.transform(X_train)
+````
+
+================== REFRESSÃO LINEAR - SciKIt-Learning =============
+
+## LinearRegression
+````python
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+scores = cross_val_score(model, X_train_scaled, y_train, cv = cv,
+                         scoring = scoring, n_jobs = n_jobs)
+np.sqrt(-scores.mean())
+
+
+from sklearn.linear_model import Ridge
+model = Ridge()
+scores = cross_val_score(model, X_train_scaled, y_train, cv = cv,
+                         scoring = scoring, n_jobs = n_jobs)
+np.sqrt(-scores.mean())
+
+from sklearn.linear_model import Lasso
+model = Lasso()
+scores = cross_val_score(model, X_train_scaled, y_train, cv = cv,
+                         scoring = scoring, n_jobs = n_jobs)
+np.sqrt(-scores.mean())
+
+from sklearn.neighbors import KNeighborsRegressor
+model = KNeighborsRegressor()
+scores = cross_val_score(model, X_train_scaled, y_train, cv = cv,
+                         scoring = scoring, n_jobs = n_jobs)
+np.sqrt(-scores.mean())
+
+from sklearn.tree import DecisionTreeRegressor
+model = DecisionTreeRegressor()
+scores = cross_val_score(model, X_train_scaled, y_train, cv = cv,
+                         scoring = scoring, n_jobs = n_jobs)
+np.sqrt(-scores.mean())
+
+from sklearn.ensemble import RandomForestRegressor
+model = RandomForestRegressor()
+scores = cross_val_score(model, X_train_scaled, y_train, cv = cv,
+                         scoring = scoring, n_jobs = n_jobs)
+np.sqrt(-scores.mean())
+
+from sklearn.ensemble import GradientBoostingRegressor
+model = GradientBoostingRegressor()
+scores = cross_val_score(model, X_train_scaled, y_train, cv = cv,
+                         scoring = scoring, n_jobs = n_jobs)
+np.sqrt(-scores.mean())
+
+from sklearn.neural_network import MLPRegressor
+model = MLPRegressor()
+scores = cross_val_score(model, X_train_scaled, y_train, cv = cv,
+                         scoring = scoring, n_jobs = n_jobs)
+np.sqrt(-scores.mean())
+````
+
+
