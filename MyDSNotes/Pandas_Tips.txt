@@ -11,6 +11,9 @@ df.head()
 df.info()
 + lista quantidade de colunas, tamanho que consome de memória e tipo de dados
 
+df.describe()
++ Lista estatísticas de cada coluna do DataFrame
+
 df["column].value_counts()
 + Visualiza valores unicos e a quantidade deles
 
@@ -48,6 +51,21 @@ train = train.drop(val_entries[val_entries == False].index)
 from collections import Counter
 common_fares_zoom = Counter(fare_zoom)
 
+=============== Navegar pelo Pandas ===================================
+
+base.loc[ base['age'] < 0]
+loc : localisa as rows de acordo com o critério, retorna um dataframa
+
+==> RETIRAR COLUNA
+# 1. apagar toda a coluna (nesse caso, isso é ruim)
+base.drop('age', 1, inplace=True)
+
+==> RETIRAR ROWS
+# 2. apagar somente os registros com problema
+base.drop(base[base.age < 0].index, inplace=True)
+
+=> Atualizar linha de acordo com WRHTRR
+base.loc[base.age < 0, 'age'] = media
 ============== 2. Lidar com NaN =======================================
 
 df.isna()
@@ -89,4 +107,41 @@ train = pd.read_csv('train_sample_' + str(sample_size) + '.csv',
 ============= 5. Datas ================================================
 
 key.dt.strftime('%Y-%m-%d %H:%M:%S')
-+ COnverter a data para o formato desejado
++ Converter a data para o formato desejado
+
+============= 6. Escalonamento
+
+````python
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+previsores = scaler.fit_transform(previsores)
+````
+
+============== Lidar com variáveis categóricas ===========
+
+ONEHOTENCONDER: conveter cada categoria em coluna
+````
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.compose import ColumnTransformer
+
+onehotencorder = ColumnTransformer(transformers=[("OneHot", OneHotEncoder(), [1,3,5,6,7,8,9,13])],remainder='passthrough')
+previsores_census = onehotencorder.fit_transform(previsores_census).toarray()
+````
+
+LABEL_ENCODER: Cada classe vira um número
+````
+from sklearn.preprocessing import LabelEncoder
+
+labelencorder_classe = LabelEncoder()
+classe_census = labelencorder_classe.fit_transform(classe_census)
+
+
+============= DIVISÂO DA BASE EM TESTE/TREINO ========================
+
+````
+from sklearn.model_selection import train_test_split 
+
+features_train, features_tests, class_train, class_test = train_test_split(
+    features, classs, test_size = 0.25, random_state = 0)
+````
+````

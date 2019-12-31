@@ -35,7 +35,7 @@
 10. Otimizar classificador
 + Uma boa prática e alterar parâmetros separadamente, de forma a obter um valor que otimiza o classificador só com aquele parâmetro. E, no final, juntar tudo.
 
-================= Testar Alg de ML  =================
+================= Testar Alg de ML  ===================================
 
 + Em geral, define-se um valor 'cv' que é a quantidade de divisão da base para testá-la. Em artigos cientificos costuma-se usar 10, mas, quanto maior o número, mais demora. Para casos simples, use 3.
 + `cv = 3`
