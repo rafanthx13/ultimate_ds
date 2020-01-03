@@ -1,0 +1,3 @@
+3-avaliar-classificadores.ipynb
++ Refazer um Notebook com ROC, AUC, CAP e explicar direitinho o que é de uma vez por todas com todos os links
++ https://docs.eyesopen.com/toolkits/cookbook/python/plotting/roc.html

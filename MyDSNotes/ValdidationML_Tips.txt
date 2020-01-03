@@ -1,0 +1,78 @@
+## Forma normal de divir a base, classificar a de teste e avaliar
+
+A forma mais normal que fazemos, dividimos a base treinamentos com uma e com a outra testamos
+
+````python
+### WHERE
+## "classificador" é o classificador do SciKItLearning
+## "previsores" é um numpy.array das features
+## "classe" é um numpy.array das classes
+
+# DIVIDIR A BASE
+from sklearn.model_selection import train_test_split
+previsores_treinamento, previsores_teste, classe_treinamento, classe_teste = train_test_split(
+    previsores, classe, test_size=0.25, random_state=0)
+
+# CLASSIFICADOR E TREINAMENTO
+classificador = ...Classify()
+classificador.fit(previsores_treinamento, classe_treinamento)
+previsoes = classificador.predict(previsores_teste)
+
+# AVALIANDO
+from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
+precisao = accuracy_score(classe_teste, previsoes)
+matriz = confusion_matrix(classe_teste, previsoes)
+print("Accuracy\n", precisao, "\n")
+print("Matrix de Confusao\n",matriz, "\n")
+print("Matrix de Confusao Porcentagem\n",matriz/matriz.sum(), "\n")
+print(classification_report(classe_teste,previsoes))
+````
+
+---------------------------------------------------------------
+
+## Fazer Cross Validation
+
+````python
+# Com Scikit-learning você só precisa do classificador e das bases
+# separadas. O cross_val vai retornar a acurácia/precisão para cada cv
+# Depois dissovocê tira a média e o desvio padrâo
+# .mean(): É o valor final mesmo
+# .stv(): QUanto maior significa que a escolha de dados de teste/train # 	impcataram muito na nota
+### WHERE
+## "classificador" é o classificador do SciKItLearning
+## "previsores" é um numpy.array das features
+## "classe" é um numpy.array das classes
+from sklearn.model_selection import cross_val_score
+resultados = cross_val_score(classificador, previsores, classe, cv = 10)
+````
+---------------------------------------------------------------
+
+## StratifiedKFold
+
+==> Em artigos científicos geralmente é feito 30 testes. Um corss validation com K=10 variando 3 vezes o seed
+
+````python
+from sklearn.model_selection import StratifiedKFold
+from sklearn.metrics import accuracy_score, confusion_matrix
+kfold = StratifiedKFold(n_splits = 10, shuffle = True, random_state = 3)
+
+resultados = []
+matrizes = []
+for indice_treinamento, indice_teste in kfold.split(previsores,
+                                                    np.zeros(shape=(previsores.shape[0], 1))):
+    # print('==>Índice treinamento: ', indice_treinamento, '\n Índice teste: ', indice_teste)
+    classificador = GaussianNB()
+    classificador.fit(previsores[indice_treinamento], classe[indice_treinamento]) 
+    previsoes = classificador.predict(previsores[indice_teste])
+    precisao = accuracy_score(classe[indice_teste], previsoes)
+    matrizes.append(confusion_matrix(classe[indice_teste], previsoes))
+    resultados.append(precisao)
+
+# Fazemos a média das 10 matrizes de confunsão em uma só
+matriz_final = np.mean(matrizes, axis = 0)
+print(matriz_final)
+
+resultados = np.asarray(resultados)
+print(resultados.mean())
+print(resultados.std())
+````
