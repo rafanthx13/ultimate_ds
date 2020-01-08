@@ -17,3 +17,13 @@ https://scikit-learn.org/stable/modules/model_evaluation.html
 CTRL_F : MSE
 	Buscar todos os tipos de erros e fazer um exemplo deles
 
+
+ENTEDER AS MÉTRICAS A SEGUIR
+
+Accuracy = (TP + TN) / (TP + TN + FP + FN)
+
+Precision = TP / (TP + FP)
+
+Recall = TP / (TP + FN)
+
+F1 Score = 2 * Precision * Recall / (Precision + Recall)
