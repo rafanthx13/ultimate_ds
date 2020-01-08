@@ -1,6 +1,9 @@
 
 ````
 <img src='../../imgs/img03-tabela-dados.png' width=700px>
+
+<img src='../../tree/imgs/img-roc-auc-cap-02.png' width=600px>
+
 ````
 
 ````
