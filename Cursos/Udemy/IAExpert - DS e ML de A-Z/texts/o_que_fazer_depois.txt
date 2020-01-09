@@ -1,16 +1,3 @@
-3-avaliar-classificadores.ipynb (COMPELTAR)
-+ Refazer um Notebook com ROC, AUC, CAP e explicar direitinho o que é de uma vez por todas com todos os links
-+ https://docs.eyesopen.com/toolkits/cookbook/python/plotting/roc.html
-+ TERMINAR CAP
-
-roc-auc-cap
-+ Pegar a ideia de usar vários classificadores e criar uma lib para poder gerar gráfico e executar qualquer coisa sobre todos ele em um único "for"
-	+ Associar os classificadore sa nomes: JUntar num dicionario que contenha um noome para ser usado como String para as coisas
-	+ Gerar Curva ROC com AUC
-	+ Gerar Relatórios
-	+ Gerar Curva CAP
-	+ Fazer Rnakeamento dos Classificadores
-	+ Gerador de cores para o matplotlib
 
 Listar ERROS
 https://scikit-learn.org/stable/modules/model_evaluation.html
@@ -27,3 +14,7 @@ Precision = TP / (TP + FP)
 Recall = TP / (TP + FN)
 
 F1 Score = 2 * Precision * Recall / (Precision + Recall)
+
+---------
+
+XGBoost para Regressão
