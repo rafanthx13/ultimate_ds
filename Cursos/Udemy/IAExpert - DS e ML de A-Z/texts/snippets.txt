@@ -13,4 +13,11 @@ import matplotlib.pyplot as plt
 file_path = "../../files/"
 ````
 
+````
+X = base.iloc[:, 3:19].values
+
+# Base de Features
+base[(list(base.columns))[3:19]].head()
+````
+
 

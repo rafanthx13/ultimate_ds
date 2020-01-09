@@ -1,3 +1,54 @@
+---------------------------------------------------------------
+
+### Resumo do `classification_report` e `confusion_matrix`
+
+````
+
+Matrix de Confusao    Nomenclatura das partes
+ [[65  3]              [[TP  FP ]
+ [ 3 29]]              [ FN  TN]]
+ 
+-------------------------------------------------------
+
+               precision    recall  f1-score   support
+
+Not Purchased       0.96      0.96      0.96        68
+    Purchased       0.91      0.91      0.91        32
+
+     accuracy                           0.94       100
+    macro avg       0.93      0.93      0.93       100
+ weighted avg       0.94      0.94      0.94       100
+ 
+-------------------------------------------------------
+ 
+    Métricas por Classe 
+    
+OBS: É a matriz de confusâo particular para cada classe
+    
+Precision: Numero total de positivos do total dos classificados como posititovos par uma classe
+    Precision = TP / TP + FP
+    
+Recall: Número de Positivos que foram devidamente identificados par auma classe
+    Recall = TP / TP + FN
+    
+F1-Score: Média Harmonica entre precisao e recall
+    F1-Score = 2 * Recall * Precision / Recall + Precision
+    
+Support: Quantidade de itens por classe
+    Support = TP + FP
+    
+    Métricas Geral
+    
+Acurracy: O quanto acertou do total
+    TP + TN / TP + FP + FN + TN
+    
+
+````
+
+---------------------------------------------------------------
+
+
+
 ## Forma normal de divir a base, classificar a de teste e avaliar
 
 A forma mais normal que fazemos, dividimos a base treinamentos com uma e com a outra testamos
