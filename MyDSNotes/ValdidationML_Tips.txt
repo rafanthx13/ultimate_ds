@@ -126,4 +126,38 @@ print(matriz_final)
 resultados = np.asarray(resultados)
 print(resultados.mean())
 print(resultados.std())
-````
+
+--------------------------------------------------------------------
+
+## HyperParams GridSearchCV
+
+````python
+
+# Get Classify
+from sklearn.ensemble import RandomForestClassifier
+classify = RandomForestClassifier()
+
+# Get all HyperParameters to tuning
+classify.get_params().keys()
+
+# Chose params to tuning
+param_grids = {'criterion': ['gini', 'entropy'], 'max_depth': [2, 4, 6, 8]}
+
+# 
+from sklearn.model_selection import GridSearchCV
+
+# scoring pode mudar, é a métrica para escolher o melhor
+grid_search = GridSearchCV(estimator = classify, param_grid = param_grids, scoring = 'accuracy', cv = 5, n_jobs = -1)
+
+grid_search = grid_search.fit(X_train, y_train)
+
+# Show best Score (de acordo com "scoring")
+best_scorre = grid_search.best_score_
+
+# Melhores HyperParâmetros
+best_parameters = grid_search.best_params_
+best_parameters
+
+# Analisar os resultados de cada combinação ordenado por score
+
+(pd.DataFrame(grid_search.cv_results_)).sort_values(by=['rank_test_score'])
