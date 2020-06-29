@@ -2,6 +2,12 @@
 2. Lidar com NaN
 3. Lidar com arquivos grande
 
+============== 0. Random Valiosas =====================================
+
+pd.set_option('display.float_format', lambda x: '%.3f' % x)
++ Número em notações científicas seraõ mostradas em float normal até com a casa
+
+
 
 ============== 1. Geral dos Dados =====================================
 
@@ -145,3 +151,26 @@ features_train, features_tests, class_train, class_test = train_test_split(
     features, classs, test_size = 0.25, random_state = 0)
 ````
 ````
+
+
+
+
+==============================
+
+......................
+
+
+# DOC PANDAS CheatSheet
+
+Documentação de acesso rápido e para o caso de nâo ter internet.
+Além disso serve para especificar melhor os args, o que fazem e dicas de como usálos.
+
+### df.drop_duplicates()
++ Retira Duplicatas
++ Link: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.drop_duplicates.html
++ `DataFrame.drop_duplicates(subset=None, keep='first', inplace=False) `
++ Onde:
+ - subset: list de colunas um uma coluna. por default considera todas quando não expecificar
+ - keep: 'first' / 'last'
+ - inplace: Boolean
+  

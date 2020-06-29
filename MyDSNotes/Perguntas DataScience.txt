@@ -1,9 +1,0 @@
-# Perguntas
-
-## Índice
-
-## Links
-
-Não categorizados
-+ https://dzone.com/articles/top-10-machine-learning-interview-questions-2019
-+ https://dzone.com/articles/data-science-amp-ml-a-complete-interview-guide?fromrel=true

@@ -34,7 +34,7 @@ RootMeanError(RMSE)
   - y é entre [-1,1]. O intervalo é de 2
 + SoftMax function
   - Boa para distribuiçâo de probabildiade (para classificação entre mais de duas classificações)
-+ REctified Linear Unit (ReLu)
++ Rectified Linear Unit (ReLu)
   - Uma reta positiva que vai de [0, inf]. Se valor positivo, retorna esse avlor, se neagito, retorna 0.
 
 
