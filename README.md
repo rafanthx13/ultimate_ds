@@ -157,4 +157,4 @@ last update: 28/06/2020
 │   └── Jupyter Notebook.txt
 └── README.md
 
-<h2 align="center">Feito por <a href="https://rafanthx13.github.io/">Rafael Morais de Assis</a></h2>
+<h2 align="center">Feito por :rocket: <a href="https://rafanthx13.github.io/">Rafael Morais de Assis</a></h2>

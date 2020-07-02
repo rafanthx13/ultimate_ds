@@ -1,6 +1,11 @@
 Collections/
 Cursos/Udacity/Intro PyTorch/deep-learning-v2-pytorch/
+*.zip
+*.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+**/__pycache__/**
 
+###################################################################
 
 # Created by https://www.gitignore.io/api/python,jupyternotebooks
 # Edit at https://www.gitignore.io/?templates=python,jupyternotebooks
@@ -8,9 +13,6 @@ Cursos/Udacity/Intro PyTorch/deep-learning-v2-pytorch/
 ### JupyterNotebooks ###
 # gitignore template for Jupyter Notebooks
 # website: http://jupyter.org/
-
-.ipynb_checkpoints
-*/.ipynb_checkpoints/*
 
 # IPython
 profile_default/
