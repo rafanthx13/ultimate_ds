@@ -260,3 +260,19 @@ df_train = pd.get_dummies(df_train)
 ````
 
 
+
+
+
+
+
+# Converter value_counts => Percentage dataFrame
+re = df['year'].value_counts()
+re2 = re / re.values.sum()
+re2.name = "percentage"
+re.name = "quantity"
+re4 = pd.concat([re, re2], axis = 1)
+re4.reset_index(level=0, inplace=True)
+re4 = re4.rename(columns = {'index': 'year'})
+re4
+
+re4.plot.pie(y='percentage', figsize=(5, 5), autopct="%.2f", labels = re4['year'].tolist(), legend=None)

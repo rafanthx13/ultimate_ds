@@ -79,12 +79,9 @@ import os
 for dirname, _, filenames in os.walk('/kaggle/input'):
     for filename in filenames:
         print(os.path.join(dirname, filename))
+````
 
-# O que mostra
-# /kaggle/input/house-prices-advanced-regression-techniques/sample_submission.csv
-# /kaggle/input/house-prices-advanced-regression-techniques/train.csv
-# /kaggle/input/house-prices-advanced-regression-techniques/test.csv
-# /kaggle/input/house-prices-advanced-regression-techniques/data_description.txt
+/input/house-prices-advanced-regression-techniques/data_description.txt
 ````
 ## Categorical Data
 
